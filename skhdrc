@@ -1,0 +1,10 @@
+cmd - return : /Applications/iTerm.app/Contents/MacOS/iTerm2 --single-instance -d ~ &> /dev/null
+cmd - tab : []
+alt - tab : yabai -m query --spaces | jq -re '.[] | select(."is-visible" == true).index' | xargs -I{} yabai -m query --windows --space {} | jq -sre 'add | sort_by(.display, .frame.x, .frame.y, .id) | nth(index(map(select(."has-focus" == true))) - 1).id'| xargs -I{} yabai -m window --focus {}
+alt + shift - tab : yabai -m query --spaces | jq -re '.[] | select(."is-visible" == true).index' | xargs -I{} yabai -m query --windows --space {} | jq -sre 'add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(."has-focus" == true))) - 1).id'| xargs -I{} yabai -m window --focus {}
+
+alt + shift - 1 : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "yabai -m window --space 1"
+alt + shift - 2 : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "yabai -m window --space 2"
+alt + shift - 3 : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "yabai -m window --space 3"
+alt + shift - 4 : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "yabai -m window --space 4"
+alt + shift - 5 : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "yabai -m window --space 5"
